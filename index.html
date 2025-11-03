@@ -1,0 +1,111 @@
+Amilee &amp; Mitchell's Wedding Countdown
+
+
+
+
+<a href="https://cdn.tailwindcss.com?plugins=forms,container-queries">https://cdn.tailwindcss.com?plugins=forms,container-queries</a>
+
+    :root {
+      --soft-blue: #a0c4e4;
+      --sand: #f0e6d6;
+      --cream: #fffaf0;
+      --coral: #f8a593;
+      --dark-text: #4a4a4a;
+    }
+    body {
+      font-family: 'Noto Sans', sans-serif;
+    }
+    h1, h2, h3, .font-serif {
+      font-family: 'Newsreader', serif;
+    }
+    .bg-overlay::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(255, 250, 240, 0.6);
+      z-index: 1;
+    }
+  
+
+
+<div class="relative min-h-screen">
+<div class="absolute inset-0 bg-center bg-cover bg-no-repeat" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuClyc4QHGKBpDN6LskKvteCw8FfCw7Ova-F3r06fxQtGDRDIJg4jeebpcd87jZHC8sSPV4RWcqapRHnGlV6RL3y_bgj7NCbt_BhGAYo5bcPUziAlHwoMSyjIUtmQQdt6EyktqkWOK-Bv8f-8ahgYtowA0Ks1NEjelkS7GHgVIEqRt1RtQ7oIoqTSjVMVG1eGN2AG-u6PubuPnPf0LAjuHDDn_0EaDCMEA65Gi5BuNKZ4z_mNqPEB422JbwJBk4yk5BKTdC4Jxqgbyk')"></div>
+<div class="relative bg-overlay">
+<div class="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+<header class="text-center py-16">
+<h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-dark-text">Amilee &amp; Mitchell</h1>
+<p class="mt-4 text-lg text-dark-text">ARE GETTING MARRIED</p>
+<div id="countdown" class="mt-8 text-2xl font-bold text-dark-text space-x-6 md:space-x-12">
+<span class="inline-block"><span id="days">0</span> <span class="block text-sm font-normal">Days</span></span>
+<span class="inline-block"><span id="hours">0</span> <span class="block text-sm font-normal">Hours</span></span>
+<span class="inline-block"><span id="minutes">0</span> <span class="block text-sm font-normal">Minutes</span></span>
+<span class="inline-block"><span id="seconds">0</span> <span class="block text-sm font-normal">Seconds</span></span>
+</div>
+<div class="mt-8 text-lg text-dark-text">
+<p>May 23, 2026</p>
+<p>Salt Rock Hotel, KwaZulu-Natal</p>
+</div>
+</header>
+<main class="py-12">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+<div class="md:col-span-1">
+<div class="aspect-w-3 aspect-h-4 rounded-lg overflow-hidden shadow-lg">
+<img alt="Couple photo" class="object-cover w-full h-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbRPCj7pC8U6sGNh_VPFg3HgwOyQ8C6vEYqFTgZLZ50a9gJIZoEmNUF7S175WO1_Hh7Flr_PuxIBKYAWr-hC6wS7RKsEZEVBhDp_6UuMlyd6Fz6JG93Dwzb1FHvOR3RGAWb6oY49yTooohUlidvZD0tiQPSJLGJm12IDYXtAoJkv_E6AD8P92zyigwjmne4o4CHxMgu7EZnwmaRmSwouecYGFZrIO9rJnKz7eNemVDGDak6L-16DhVJyz86cWxfpSFwVN10zUWDFs" />
+</div>
+</div>
+<div class="md:col-span-2 text-center md:text-left">
+<h2 class="text-4xl font-serif font-bold text-dark-text mb-4">Welcome to Our Celebration</h2>
+<p class="text-dark-text leading-relaxed mb-8">
+                We are so excited to celebrate our special day with you. This website is your go-to source for all things wedding-related, from travel information to our gift registry. We can't wait to share this moment with our favorite people!
+              </p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+<a class="flex items-center justify-center gap-2 px-6 py-3 bg-soft-blue text-dark-text font-bold rounded-lg hover:bg-opacity-80 transition-colors shadow-md" href="#">
+<span class="material-symbols-outlined">hotel</span>
+                  Accommodations
+                </a>
+<a class="flex items-center justify-center gap-2 px-6 py-3 bg-sand text-dark-text font-bold rounded-lg hover:bg-opacity-80 transition-colors shadow-md" href="#">
+<span class="material-symbols-outlined">card_giftcard</span>
+                  Gift Registry
+                </a>
+<a class="flex items-center justify-center gap-2 px-6 py-3 bg-coral text-dark-text font-bold rounded-lg hover:bg-opacity-80 transition-colors shadow-md" href="#">
+<span class="material-symbols-outlined">restaurant</span>
+                  Dietary Needs
+                </a>
+</div>
+</div>
+</div>
+</main>
+<footer class="text-center py-8 text-dark-text">
+
+</footer>
+</div>
+</div>
+</div>
+
+
+// Set the date we're counting down to - May 23, 2026
+var countDownDate = new Date("May 23, 2026 16:00:00").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+  var now = new Date().getTime();
+  var distance = countDownDate - now;
+  
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  
+  document.getElementById("days").innerHTML = days;
+  document.getElementById("hours").innerHTML = hours;
+  document.getElementById("minutes").innerHTML = minutes;
+  document.getElementById("seconds").innerHTML = seconds;
+  
+  if (distance &lt; 0) {
+    clearInterval(x);
+    document.getElementById(&quot;countdown&quot;).innerHTML = &quot;<h2>We're Married!</h2>";
+  }
+}, 1000);
