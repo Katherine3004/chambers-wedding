@@ -1,111 +1,160 @@
-Amilee &amp; Mitchell's Wedding Countdown
-
-
-
-
-<a href="https://cdn.tailwindcss.com?plugins=forms,container-queries">https://cdn.tailwindcss.com?plugins=forms,container-queries</a>
-
-    :root {
-      --soft-blue: #a0c4e4;
-      --sand: #f0e6d6;
-      --cream: #fffaf0;
-      --coral: #f8a593;
-      --dark-text: #4a4a4a;
-    }
-    body {
-      font-family: 'Noto Sans', sans-serif;
-    }
-    h1, h2, h3, .font-serif {
-      font-family: 'Newsreader', serif;
-    }
-    .bg-overlay::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(255, 250, 240, 0.6);
-      z-index: 1;
-    }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amilee & Mitchell's Wedding - May 23, 2026</title>
   
-
-
-<div class="relative min-h-screen">
-<div class="absolute inset-0 bg-center bg-cover bg-no-repeat" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuClyc4QHGKBpDN6LskKvteCw8FfCw7Ova-F3r06fxQtGDRDIJg4jeebpcd87jZHC8sSPV4RWcqapRHnGlV6RL3y_bgj7NCbt_BhGAYo5bcPUziAlHwoMSyjIUtmQQdt6EyktqkWOK-Bv8f-8ahgYtowA0Ks1NEjelkS7GHgVIEqRt1RtQ7oIoqTSjVMVG1eGN2AG-u6PubuPnPf0LAjuHDDn_0EaDCMEA65Gi5BuNKZ4z_mNqPEB422JbwJBk4yk5BKTdC4Jxqgbyk')"></div>
-<div class="relative bg-overlay">
-<div class="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-<header class="text-center py-16">
-<h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-dark-text">Amilee &amp; Mitchell</h1>
-<p class="mt-4 text-lg text-dark-text">ARE GETTING MARRIED</p>
-<div id="countdown" class="mt-8 text-2xl font-bold text-dark-text space-x-6 md:space-x-12">
-<span class="inline-block"><span id="days">0</span> <span class="block text-sm font-normal">Days</span></span>
-<span class="inline-block"><span id="hours">0</span> <span class="block text-sm font-normal">Hours</span></span>
-<span class="inline-block"><span id="minutes">0</span> <span class="block text-sm font-normal">Minutes</span></span>
-<span class="inline-block"><span id="seconds">0</span> <span class="block text-sm font-normal">Seconds</span></span>
-</div>
-<div class="mt-8 text-lg text-dark-text">
-<p>May 23, 2026</p>
-<p>Salt Rock Hotel, KwaZulu-Natal</p>
-</div>
-</header>
-<main class="py-12">
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-<div class="md:col-span-1">
-<div class="aspect-w-3 aspect-h-4 rounded-lg overflow-hidden shadow-lg">
-<img alt="Couple photo" class="object-cover w-full h-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbRPCj7pC8U6sGNh_VPFg3HgwOyQ8C6vEYqFTgZLZ50a9gJIZoEmNUF7S175WO1_Hh7Flr_PuxIBKYAWr-hC6wS7RKsEZEVBhDp_6UuMlyd6Fz6JG93Dwzb1FHvOR3RGAWb6oY49yTooohUlidvZD0tiQPSJLGJm12IDYXtAoJkv_E6AD8P92zyigwjmne4o4CHxMgu7EZnwmaRmSwouecYGFZrIO9rJnKz7eNemVDGDak6L-16DhVJyz86cWxfpSFwVN10zUWDFs" />
-</div>
-</div>
-<div class="md:col-span-2 text-center md:text-left">
-<h2 class="text-4xl font-serif font-bold text-dark-text mb-4">Welcome to Our Celebration</h2>
-<p class="text-dark-text leading-relaxed mb-8">
-                We are so excited to celebrate our special day with you. This website is your go-to source for all things wedding-related, from travel information to our gift registry. We can't wait to share this moment with our favorite people!
-              </p>
-<div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-<a class="flex items-center justify-center gap-2 px-6 py-3 bg-soft-blue text-dark-text font-bold rounded-lg hover:bg-opacity-80 transition-colors shadow-md" href="#">
-<span class="material-symbols-outlined">hotel</span>
-                  Accommodations
-                </a>
-<a class="flex items-center justify-center gap-2 px-6 py-3 bg-sand text-dark-text font-bold rounded-lg hover:bg-opacity-80 transition-colors shadow-md" href="#">
-<span class="material-symbols-outlined">card_giftcard</span>
-                  Gift Registry
-                </a>
-<a class="flex items-center justify-center gap-2 px-6 py-3 bg-coral text-dark-text font-bold rounded-lg hover:bg-opacity-80 transition-colors shadow-md" href="#">
-<span class="material-symbols-outlined">restaurant</span>
-                  Dietary Needs
-                </a>
-</div>
-</div>
-</div>
-</main>
-<footer class="text-center py-8 text-dark-text">
-
-</footer>
-</div>
-</div>
-</div>
-
-
-// Set the date we're counting down to - May 23, 2026
-var countDownDate = new Date("May 23, 2026 16:00:00").getTime();
-
-// Update the count down every 1 second
-var x = setInterval(function() {
-  var now = new Date().getTime();
-  var distance = countDownDate - now;
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
   
-  document.getElementById("days").innerHTML = days;
-  document.getElementById("hours").innerHTML = hours;
-  document.getElementById("minutes").innerHTML = minutes;
-  document.getElementById("seconds").innerHTML = seconds;
-  
-  if (distance &lt; 0) {
-    clearInterval(x);
-    document.getElementById(&quot;countdown&quot;).innerHTML = &quot;<h2>We're Married!</h2>";
-  }
-}, 1000);
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Hero Section with Background Image -->
+  <section class="hero-section">
+    <div class="hero-background" style="background-image: url('images/background.jpeg')"></div>
+    <div class="hero-content fade-in">
+      <h1 class="names-title">Amilee & Mitchell</h1>
+      <p class="wedding-date">May 23, 2026</p>
+      <p class="wedding-location">Salt Rock Hotel, KwaZulu-Natal</p>
+      
+      <!-- Countdown Timer -->
+      <div id="countdown" class="countdown-container">
+        <div class="countdown-item">
+          <div id="days" class="countdown-number">0</div>
+          <div class="countdown-label">Days</div>
+        </div>
+        <div class="countdown-item">
+          <div id="hours" class="countdown-number">0</div>
+          <div class="countdown-label">Hours</div>
+        </div>
+        <div class="countdown-item">
+          <div id="minutes" class="countdown-number">0</div>
+          <div class="countdown-label">Minutes</div>
+        </div>
+        <div class="countdown-item">
+          <div id="seconds" class="countdown-number">0</div>
+          <div class="countdown-label">Seconds</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Welcome Section -->
+  <section class="welcome-section">
+    <div class="container">
+      <div class="welcome-grid">
+        <div class="couple-image-container">
+          <img src="images/couple.jpeg" alt="Amilee and Mitchell" class="couple-image">
+        </div>
+        <div class="welcome-content">
+          <h2 class="section-title">Our Love Story Continues...</h2>
+          <p class="welcome-text">
+            We are absolutely thrilled to celebrate our special day with you! Your presence means the world to us as we begin this beautiful journey together. This website will be your guide for all the details about our wedding celebration.
+          </p>
+          <p class="welcome-text">
+            From travel arrangements to accommodation options, we've gathered everything you need to know. We can't wait to create unforgettable memories with our favorite people in the stunning setting of Salt Rock Hotel.
+          </p>
+          <div class="action-buttons">
+            <a href="#" class="btn btn-primary">
+              <span class="material-symbols-outlined">hotel</span>
+              Accommodations
+            </a>
+            <a href="#" class="btn btn-secondary">
+              <span class="material-symbols-outlined">card_giftcard</span>
+              Gift Registry
+            </a>
+            <a href="#" class="btn btn-accent">
+              <span class="material-symbols-outlined">restaurant</span>
+              Dietary Needs
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Information Cards -->
+  <section class="info-section">
+    <div class="container">
+      <h2 class="section-title" style="text-align: center; margin-bottom: 3rem;">Wedding Details</h2>
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>Ceremony</h3>
+          <p>Join us for our outdoor ceremony at 4:00 PM as we exchange vows with the ocean as our backdrop. Please arrive by 3:30 PM.</p>
+        </div>
+        <div class="info-card">
+          <h3>Reception</h3>
+          <p>Following the ceremony, we'll celebrate with dinner, dancing, and festivities continuing into the evening under the stars.</p>
+        </div>
+        <div class="info-card">
+          <h3>Dress Code</h3>
+          <p>Beach formal attire. Think elegant but comfortable - ladies, consider wedges or block heels for the outdoor setting.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p class="footer-names">A & M</p>
+    <p class="footer-date">05.23.2026</p>
+  </footer>
+
+  <!-- JavaScript for Countdown -->
+  <script>
+    // Set the wedding date - May 23, 2026 at 4:00 PM
+    const weddingDate = new Date("May 23, 2026 16:00:00").getTime();
+
+    // Update countdown every second
+    const countdownInterval = setInterval(function() {
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
+      
+      // Calculate time units
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      
+      // Update HTML
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours;
+      document.getElementById("minutes").textContent = minutes;
+      document.getElementById("seconds").textContent = seconds;
+      
+      // If countdown is finished
+      if (distance < 0) {
+        clearInterval(countdownInterval);
+        document.getElementById("countdown").innerHTML = "<h2 style='color: var(--primary-blue); font-size: 2rem;'>We're Married!</h2>";
+      }
+    }, 1000);
+
+    // Add fade-in animation on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all sections
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
+    });
+  </script>
+</body>
+</html>
