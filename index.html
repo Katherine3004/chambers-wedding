@@ -143,9 +143,7 @@
       <h2 class="section-title" style="text-align: center; color: #2C3E3E;">RSVP</h2>
       <p class="section-subtitle" style="text-align: center; color: #8B7355; margin-bottom: 3rem;">Please respond by April 1, 2026</p>
       
-      <form class="rsvp-form" id="rsvpForm" name="wedding-rsvp" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-        <!-- Hidden field for Netlify Forms -->
-        <input type="hidden" name="form-name" value="wedding-rsvp">
+      <form class="rsvp-form" id="rsvpForm" name="wedding-rsvp" netlify netlify-honeypot="bot-field">
         <!-- Honeypot field for spam protection (hidden from users) -->
         <div style="display:none">
           <label>Don't fill this out if you're human: <input name="bot-field" /></label>
@@ -191,14 +189,78 @@
           </select>
         </div>
         
-        <!-- Dynamic Guest Names Container -->
-        <div id="guest-names-container" class="guest-names-container">
-          <!-- Guest name fields will be dynamically inserted here -->
+        <!-- Pre-generated Guest Name Fields (hidden by default) -->
+        <div id="guest-names-container" class="guest-names-container" style="display: none;">
+          <div class="guest-names-title">
+            <label>Guest Names</label>
+          </div>
+          
+          <div class="form-group guest-field" id="guest-field-1" style="display: none;">
+            <label for="guest_1">Guest 1 (Primary Contact)</label>
+            <input type="text" id="guest_1" name="guest_1" placeholder=" ">
+          </div>
+          
+          <div class="form-group guest-field" id="guest-field-2" style="display: none;">
+            <label for="guest_2">Guest 2 Full Name</label>
+            <input type="text" id="guest_2" name="guest_2" placeholder=" ">
+          </div>
+          
+          <div class="form-group guest-field" id="guest-field-3" style="display: none;">
+            <label for="guest_3">Guest 3 Full Name</label>
+            <input type="text" id="guest_3" name="guest_3" placeholder=" ">
+          </div>
+          
+          <div class="form-group guest-field" id="guest-field-4" style="display: none;">
+            <label for="guest_4">Guest 4 Full Name</label>
+            <input type="text" id="guest_4" name="guest_4" placeholder=" ">
+          </div>
+          
+          <div class="form-group guest-field" id="guest-field-5" style="display: none;">
+            <label for="guest_5">Guest 5 Full Name</label>
+            <input type="text" id="guest_5" name="guest_5" placeholder=" ">
+          </div>
+          
+          <div class="form-group guest-field" id="guest-field-6" style="display: none;">
+            <label for="guest_6">Guest 6 Full Name</label>
+            <input type="text" id="guest_6" name="guest_6" placeholder=" ">
+          </div>
         </div>
         
-        <!-- Dietary Requirements Container (shows only if attending=yes) -->
+        <!-- Pre-generated Dietary Requirements Fields (hidden by default) -->
         <div id="dietary-container" class="dietary-container" style="display: none;">
-          <!-- Individual dietary requirement fields will be dynamically inserted here -->
+          <div class="dietary-title">
+            <label>Dietary Requirements</label>
+          </div>
+          
+          <div class="form-group dietary-field" id="dietary-field-1" style="display: none;">
+            <label for="dietary_1">Guest 1 Dietary Requirements</label>
+            <input type="text" id="dietary_1" name="dietary_1" placeholder="Any allergies or dietary restrictions">
+          </div>
+          
+          <div class="form-group dietary-field" id="dietary-field-2" style="display: none;">
+            <label for="dietary_2">Guest 2 Dietary Requirements</label>
+            <input type="text" id="dietary_2" name="dietary_2" placeholder="Any allergies or dietary restrictions">
+          </div>
+          
+          <div class="form-group dietary-field" id="dietary-field-3" style="display: none;">
+            <label for="dietary_3">Guest 3 Dietary Requirements</label>
+            <input type="text" id="dietary_3" name="dietary_3" placeholder="Any allergies or dietary restrictions">
+          </div>
+          
+          <div class="form-group dietary-field" id="dietary-field-4" style="display: none;">
+            <label for="dietary_4">Guest 4 Dietary Requirements</label>
+            <input type="text" id="dietary_4" name="dietary_4" placeholder="Any allergies or dietary restrictions">
+          </div>
+          
+          <div class="form-group dietary-field" id="dietary-field-5" style="display: none;">
+            <label for="dietary_5">Guest 5 Dietary Requirements</label>
+            <input type="text" id="dietary_5" name="dietary_5" placeholder="Any allergies or dietary restrictions">
+          </div>
+          
+          <div class="form-group dietary-field" id="dietary-field-6" style="display: none;">
+            <label for="dietary_6">Guest 6 Dietary Requirements</label>
+            <input type="text" id="dietary_6" name="dietary_6" placeholder="Any allergies or dietary restrictions">
+          </div>
         </div>
         
         <!-- Message -->

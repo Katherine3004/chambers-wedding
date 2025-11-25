@@ -145,15 +145,13 @@ if (attendingSelect) {
     attendingSelect.addEventListener('change', function() {
         if (this.value === 'yes') {
             guestCountGroup.style.display = 'block';
-            // Don't show dietary until guest count is selected
-            // Don't generate fields until a count is selected
-            guestNamesContainer.innerHTML = '';
-            dietaryContainer.innerHTML = '';
+            // Don't show guest names/dietary until guest count is selected
+            hideAllGuestFields();
+            hideAllDietaryFields();
         } else {
             guestCountGroup.style.display = 'none';
-            dietaryContainer.style.display = 'none';
-            guestNamesContainer.innerHTML = '';
-            dietaryContainer.innerHTML = '';
+            hideAllGuestFields();
+            hideAllDietaryFields();
             if (guestCountSelect) {
                 guestCountSelect.value = '';
             }
@@ -161,162 +159,146 @@ if (attendingSelect) {
     });
 }
 
-// Generate guest name fields when count changes
+// Show/hide guest fields when count changes
 if (guestCountSelect) {
     guestCountSelect.addEventListener('change', function() {
         const count = parseInt(this.value);
         if (!isNaN(count) && count > 0) {
-            generateGuestFields(count);
-            generateDietaryFields(count);
-            dietaryContainer.style.display = 'block';
+            showGuestFields(count);
+            showDietaryFields(count);
         } else {
-            guestNamesContainer.innerHTML = '';
-            dietaryContainer.innerHTML = '';
-            dietaryContainer.style.display = 'none';
+            hideAllGuestFields();
+            hideAllDietaryFields();
         }
     });
 }
 
-function generateGuestFields(count) {
-    guestNamesContainer.innerHTML = '';
+function showGuestFields(count) {
+    // Show the guest names container
+    guestNamesContainer.style.display = 'block';
     
-    // Add a title for the guest names section
-    if (count > 0) {
-        const titleDiv = document.createElement('div');
-        titleDiv.className = 'guest-names-title';
-        titleDiv.innerHTML = '<label>Guest Names</label>';
-        guestNamesContainer.appendChild(titleDiv);
-    }
-    
-    for (let i = 1; i <= count; i++) {
-        const guestDiv = document.createElement('div');
-        guestDiv.className = 'form-group guest-field';
-        guestDiv.innerHTML = `
-            <label for="guest_${i}">Guest ${i} ${i === 1 ? '(Primary Contact)' : 'Full Name'}</label>
-            <input type="text" id="guest_${i}" name="guest_${i}" placeholder="${i === 1 ? ' ' : ' '}" ${i === 1 ? '' : 'required'}>
-        `;
-        guestNamesContainer.appendChild(guestDiv);
-        
-        // Auto-fill first guest with primary name
-        if (i === 1) {
-            setTimeout(() => {
-                const primaryName = document.getElementById('primary-name');
-                const guest1 = document.getElementById('guest_1');
-                if (primaryName && guest1) {
-                    guest1.value = primaryName.value;
-                    
-                    // Remove any existing listeners before adding new one
-                    const newPrimaryName = primaryName.cloneNode(true);
-                    primaryName.parentNode.replaceChild(newPrimaryName, primaryName);
-                    
-                    document.getElementById('primary-name').addEventListener('input', function() {
-                        const currentGuest1 = document.getElementById('guest_1');
-                        if (currentGuest1) {
-                            currentGuest1.value = this.value;
-                        }
-                    });
-                }
-            }, 50);
+    // Hide all guest fields first
+    for (let i = 1; i <= 6; i++) {
+        const field = document.getElementById(`guest-field-${i}`);
+        if (field) {
+            field.style.display = 'none';
+            // Clear the input
+            const input = document.getElementById(`guest_${i}`);
+            if (input && i > 1) {
+                input.value = '';
+                input.required = false;
+            }
         }
     }
     
-    // Add animation
-    const fields = guestNamesContainer.querySelectorAll('.guest-field');
-    fields.forEach((field, index) => {
-        field.style.opacity = '0';
-        field.style.transform = 'translateY(10px)';
-        setTimeout(() => {
-            field.style.transition = 'all 0.3s ease';
-            field.style.opacity = '1';
-            field.style.transform = 'translateY(0)';
-        }, index * 50);
-    });
-}
-
-function generateDietaryFields(count) {
-    dietaryContainer.innerHTML = '';
-    
-    // Add a title for the dietary section
-    const titleDiv = document.createElement('div');
-    titleDiv.className = 'dietary-title';
-    titleDiv.innerHTML = '<label>Dietary Requirements</label>';
-    dietaryContainer.appendChild(titleDiv);
-    
+    // Show only the needed guest fields
     for (let i = 1; i <= count; i++) {
-        const dietaryDiv = document.createElement('div');
-        dietaryDiv.className = 'form-group dietary-field';
-        dietaryDiv.innerHTML = `
-            <label for="dietary_${i}">Guest ${i} Dietary Requirements</label>
-            <input type="text" id="dietary_${i}" name="dietary_${i}" placeholder="Any allergies or dietary restrictions">
-        `;
-        dietaryContainer.appendChild(dietaryDiv);
+        const field = document.getElementById(`guest-field-${i}`);
+        if (field) {
+            field.style.display = 'block';
+            // Set required attribute for all except first guest
+            const input = document.getElementById(`guest_${i}`);
+            if (input && i > 1) {
+                input.required = true;
+            }
+        }
     }
     
-    // Add animation
-    const fields = dietaryContainer.querySelectorAll('.dietary-field');
-    fields.forEach((field, index) => {
-        field.style.opacity = '0';
-        field.style.transform = 'translateY(10px)';
-        setTimeout(() => {
-            field.style.transition = 'all 0.3s ease';
-            field.style.opacity = '1';
-            field.style.transform = 'translateY(0)';
-        }, index * 50);
+    // Auto-fill first guest with primary name
+    const primaryName = document.getElementById('primary-name');
+    const guest1 = document.getElementById('guest_1');
+    if (primaryName && guest1) {
+        guest1.value = primaryName.value;
+    }
+}
+
+function showDietaryFields(count) {
+    // Show the dietary container
+    dietaryContainer.style.display = 'block';
+    
+    // Hide all dietary fields first
+    for (let i = 1; i <= 6; i++) {
+        const field = document.getElementById(`dietary-field-${i}`);
+        if (field) {
+            field.style.display = 'none';
+            // Clear the input
+            const input = document.getElementById(`dietary_${i}`);
+            if (input) {
+                input.value = '';
+            }
+        }
+    }
+    
+    // Show only the needed dietary fields
+    for (let i = 1; i <= count; i++) {
+        const field = document.getElementById(`dietary-field-${i}`);
+        if (field) {
+            field.style.display = 'block';
+        }
+    }
+}
+
+function hideAllGuestFields() {
+    guestNamesContainer.style.display = 'none';
+    for (let i = 1; i <= 6; i++) {
+        const field = document.getElementById(`guest-field-${i}`);
+        if (field) {
+            field.style.display = 'none';
+            const input = document.getElementById(`guest_${i}`);
+            if (input) {
+                input.value = '';
+                input.required = false;
+            }
+        }
+    }
+}
+
+function hideAllDietaryFields() {
+    dietaryContainer.style.display = 'none';
+    for (let i = 1; i <= 6; i++) {
+        const field = document.getElementById(`dietary-field-${i}`);
+        if (field) {
+            field.style.display = 'none';
+            const input = document.getElementById(`dietary_${i}`);
+            if (input) {
+                input.value = '';
+            }
+        }
+    }
+}
+
+// Auto-sync primary name with guest 1
+const primaryNameInput = document.getElementById('primary-name');
+if (primaryNameInput) {
+    primaryNameInput.addEventListener('input', function() {
+        const guest1 = document.getElementById('guest_1');
+        if (guest1) {
+            guest1.value = this.value;
+        }
     });
 }
 
-// RSVP Form Submit Handler - using Netlify Forms
+// RSVP Form Validation (Let Netlify handle submission)
 if (rsvpForm) {
     rsvpForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Validate that guest names are filled if attending
+        // Only validate - don't prevent default submission
         const attending = document.getElementById('attending').value;
         if (attending === 'yes') {
             const guestCount = document.getElementById('guest-count').value;
             if (!guestCount || guestCount === '') {
+                e.preventDefault();
                 alert('Please select the number of guests attending.');
                 return false;
             }
         }
         
+        // Let Netlify handle the form submission naturally
         // Show a loading state on the button
         const submitBtn = this.querySelector('.btn-submit');
         if (submitBtn) {
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
         }
-        
-        // Submit form using fetch API for better handling
-        const formData = new FormData(rsvpForm);
-        
-        fetch('/', {
-            method: 'POST',
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: new URLSearchParams(formData).toString()
-        })
-        .then(() => {
-            // Show success message
-            alert('Thank you for your RSVP! We\'ll be in touch soon.');
-            // Reset form
-            rsvpForm.reset();
-            guestCountGroup.style.display = 'none';
-            dietaryContainer.style.display = 'none';
-            guestNamesContainer.innerHTML = '';
-            dietaryContainer.innerHTML = '';
-            
-            // Reset button
-            submitBtn.textContent = 'Send RSVP';
-            submitBtn.disabled = false;
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-            alert('There was an error sending your RSVP. Please try again.');
-            
-            // Reset button
-            submitBtn.textContent = 'Send RSVP';
-            submitBtn.disabled = false;
-        });
     });
 }
 
