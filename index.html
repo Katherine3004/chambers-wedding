@@ -3,30 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Amilee & Mitchell's Wedding - May 23, 2026</title>
-  
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-  
-  <!-- Material Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  <title>Amilee & Mitchell - May 23, 2026</title>
   
   <!-- Custom CSS -->
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <!-- Hero Section with Background Image -->
-  <section class="hero-section">
-    <div class="hero-background" style="background-image: url('images/background.jpeg')"></div>
-    <div class="hero-content fade-in">
-      <h1 class="names-title">Amilee & Mitchell</h1>
-      <p class="wedding-date">May 23, 2026</p>
-      <p class="wedding-location">Salt Rock Hotel, KwaZulu-Natal</p>
-      
-      <!-- Countdown Timer -->
-      <div id="countdown" class="countdown-container">
+  <!-- Navigation -->
+  <nav class="navigation" id="navigation">
+    <div class="nav-container">
+      <button class="nav-toggle" id="navToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#hero" class="nav-link">Home</a></li>
+        <li><a href="#story" class="nav-link">Our Story</a></li>
+        <li><a href="#details" class="nav-link">Details</a></li>
+        <li><a href="#travel" class="nav-link">Travel</a></li>
+        <li><a href="#rsvp" class="nav-link">RSVP</a></li>
+        <li><a href="#registry" class="nav-link">Registry</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-subtitle">The Wedding of</p>
+      <h1 class="hero-names">
+        <span class="name">Amilee</span>
+        <span class="ampersand">&</span>
+        <span class="name">Mitchell</span>
+      </h1>
+      <div class="hero-details">
+        <span class="hero-date">May 23, 2026</span>
+        <span class="hero-location">Salt Rock Hotel</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Countdown Timer Section -->
+  <section class="countdown-section" id="countdown">
+    <div class="container">
+      <h2 class="countdown-title">Counting Down to Our Big Day</h2>
+      <div class="countdown-container">
         <div class="countdown-item">
           <div id="days" class="countdown-number">0</div>
           <div class="countdown-label">Days</div>
@@ -47,56 +70,152 @@
     </div>
   </section>
 
-  <!-- Welcome Section -->
-  <section class="welcome-section">
+  <!-- Our Story Section -->
+  <section class="story-section fade-in" id="story">
     <div class="container">
-      <div class="welcome-grid">
-        <div class="couple-image-container">
-          <img src="images/couple.jpeg" alt="Amilee and Mitchell" class="couple-image">
+      <div class="story-grid">
+        <div class="story-image-container">
+          <img src="images/couple.jpeg" alt="Amilee and Mitchell" class="story-image">
         </div>
-        <div class="welcome-content">
-          <h2 class="section-title">Our Love Story Continues...</h2>
-          <p class="welcome-text">
-            We are absolutely thrilled to celebrate our special day with you! Your presence means the world to us as we begin this beautiful journey together. This website will be your guide for all the details about our wedding celebration.
+        <div class="story-content">
+          <h2 class="section-title">Our Story</h2>
+          <p class="story-text">
+            Our love story began in the most unexpected way, and now we're ready to begin our forever together. From our first meeting to this beautiful moment, every step has led us here - to celebrating with you, our cherished family and friends.
           </p>
-          <p class="welcome-text">
-            From travel arrangements to accommodation options, we've gathered everything you need to know. We can't wait to create unforgettable memories with our favorite people in the stunning setting of Salt Rock Hotel.
+          <p class="story-text">
+            We can't wait to share this special day with you at the stunning Salt Rock Hotel, where the ocean meets the shore, just as our two hearts become one. Your presence means the world to us as we embark on this incredible journey together.
           </p>
-          <div class="action-buttons">
-            <a href="#" class="btn btn-primary">
-              <span class="material-symbols-outlined">hotel</span>
-              Accommodations
-            </a>
-            <a href="#" class="btn btn-secondary">
-              <span class="material-symbols-outlined">card_giftcard</span>
-              Gift Registry
-            </a>
-            <a href="#" class="btn btn-accent">
-              <span class="material-symbols-outlined">restaurant</span>
-              Dietary Needs
-            </a>
-          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Information Cards -->
-  <section class="info-section">
+  <!-- Wedding Details Section -->
+  <section class="details-section fade-in" id="details">
     <div class="container">
-      <h2 class="section-title" style="text-align: center; margin-bottom: 3rem;">Wedding Details</h2>
-      <div class="info-grid">
-        <div class="info-card">
+      <h2 class="section-title" style="text-align: center;">Wedding Details</h2>
+      <div class="details-grid">
+        <div class="detail-card">
           <h3>Ceremony</h3>
-          <p>Join us for our outdoor ceremony at 4:00 PM as we exchange vows with the ocean as our backdrop. Please arrive by 3:30 PM.</p>
+          <p>Join us for our outdoor ceremony at 4:00 PM as we exchange vows with the ocean as our backdrop. Please arrive by 3:30 PM to find your seats and enjoy the coastal atmosphere.</p>
         </div>
-        <div class="info-card">
+        <div class="detail-card">
           <h3>Reception</h3>
-          <p>Following the ceremony, we'll celebrate with dinner, dancing, and festivities continuing into the evening under the stars.</p>
+          <p>Following the ceremony, we'll celebrate with dinner, dancing, and festivities continuing into the evening under the stars. Prepare for an night of joy, laughter, and unforgettable memories.</p>
         </div>
-        <div class="info-card">
+        <div class="detail-card">
           <h3>Dress Code</h3>
-          <p>Beach formal attire. Think elegant but comfortable - ladies, consider wedges or block heels for the outdoor setting.</p>
+          <p>Beach Formal - Think elegant but comfortable. Ladies, consider wedges or block heels for the outdoor setting. Gentlemen, light-colored suits are perfect for the coastal venue.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Travel/Venue Section -->
+  <section class="travel-section fade-in" id="travel">
+    <div class="container">
+      <h2 class="section-title" style="text-align: center;">Travel & Accommodation</h2>
+      <div class="travel-content">
+        <div class="venue-info">
+          <h3>Salt Rock Hotel</h3>
+          <p>Nestled along the stunning KwaZulu-Natal coastline, Salt Rock Hotel offers breathtaking ocean views and world-class amenities. The perfect backdrop for our special day.</p>
+          <p><strong>Address:</strong> Salt Rock, KwaZulu-Natal, South Africa</p>
+          <p><strong>Airport:</strong> King Shaka International Airport (30 minutes drive)</p>
+        </div>
+        
+        <div class="map-placeholder">
+          <!-- Add Google Maps embed here -->
+          <span>MAP LOCATION</span>
+        </div>
+        
+        <div class="venue-info">
+          <h3>Accommodation</h3>
+          <p>We have reserved a block of rooms at Salt Rock Hotel at a special rate for our guests. Please mention the Amilee & Mitchell wedding when booking.</p>
+          <p>Alternative accommodations are available at nearby hotels and guesthouses. Contact us for recommendations based on your preferences and budget.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP Section -->
+  <section class="rsvp-section fade-in" id="rsvp">
+    <div class="container">
+      <h2 class="section-title" style="text-align: center; color: var(--text-light);">RSVP</h2>
+      <p class="section-subtitle" style="text-align: center; color: var(--champagne); margin-bottom: 2rem;">Please respond by April 1, 2026</p>
+      
+      <form class="rsvp-form" id="rsvpForm">
+        <!-- Primary Contact -->
+        <div class="form-group">
+          <label for="primary-name">Your Full Name</label>
+          <input type="text" id="primary-name" name="primary-name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone">
+        </div>
+        
+        <!-- Attendance -->
+        <div class="form-group">
+          <label for="attending">Will you be attending?</label>
+          <select id="attending" name="attending" required>
+            <option value="">Please select</option>
+            <option value="yes">Joyfully Accept</option>
+            <option value="no">Regretfully Decline</option>
+          </select>
+        </div>
+        
+        <!-- Number of Guests (shows only if attending=yes) -->
+        <div class="form-group" id="guest-count-group" style="display: none;">
+          <label for="guest-count">Number of Guests (including yourself)</label>
+          <select id="guest-count" name="guest-count">
+            <option value="1">1 Guest</option>
+            <option value="2">2 Guests</option>
+            <option value="3">3 Guests</option>
+            <option value="4">4 Guests</option>
+            <option value="5">5 Guests</option>
+          </select>
+        </div>
+        
+        <!-- Dynamic Guest Names Container -->
+        <div id="guest-names-container" class="guest-names-container">
+          <!-- Guest name fields will be dynamically inserted here -->
+        </div>
+        
+        <!-- Dietary Requirements (shows only if attending=yes) -->
+        <div class="form-group" id="dietary-group" style="display: none;">
+          <label for="dietary">Dietary Requirements</label>
+          <textarea id="dietary" name="dietary" placeholder="Please list any allergies or dietary restrictions for all guests"></textarea>
+        </div>
+        
+        <!-- Message -->
+        <div class="form-group">
+          <label for="message">Message for the Couple (Optional)</label>
+          <textarea id="message" name="message" placeholder="Share your well wishes..."></textarea>
+        </div>
+        
+        <button type="submit" class="btn btn-submit">Send RSVP</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Gift Registry Section -->
+  <section class="registry-section fade-in" id="registry">
+    <div class="container">
+      <h2 class="section-title" style="text-align: center;">Gift Registry</h2>
+      <div class="registry-content">
+        <p class="registry-text">
+          Your presence at our wedding is the greatest gift of all. However, if you wish to honor us with a gift, we have registered at the following stores. We are also saving for our honeymoon adventure and future home.
+        </p>
+        <div class="registry-buttons">
+          <a href="#" class="btn">Registry One</a>
+          <a href="#" class="btn">Registry Two</a>
+          <a href="#" class="btn">Honeymoon Fund</a>
         </div>
       </div>
     </div>
@@ -104,57 +223,12 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <p class="footer-names">A & M</p>
+    <p class="footer-monogram">A & M</p>
     <p class="footer-date">05.23.2026</p>
+    <p class="footer-hashtag">#AmileeAndMitchell2026</p>
   </footer>
 
-  <!-- JavaScript for Countdown -->
-  <script>
-    // Set the wedding date - May 23, 2026 at 4:00 PM
-    const weddingDate = new Date("May 23, 2026 16:00:00").getTime();
-
-    // Update countdown every second
-    const countdownInterval = setInterval(function() {
-      const now = new Date().getTime();
-      const distance = weddingDate - now;
-      
-      // Calculate time units
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      
-      // Update HTML
-      document.getElementById("days").textContent = days;
-      document.getElementById("hours").textContent = hours;
-      document.getElementById("minutes").textContent = minutes;
-      document.getElementById("seconds").textContent = seconds;
-      
-      // If countdown is finished
-      if (distance < 0) {
-        clearInterval(countdownInterval);
-        document.getElementById("countdown").innerHTML = "<h2 style='color: var(--primary-blue); font-size: 2rem;'>We're Married!</h2>";
-      }
-    }, 1000);
-
-    // Add fade-in animation on scroll
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver(function(entries) {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('fade-in');
-        }
-      });
-    }, observerOptions);
-
-    // Observe all sections
-    document.querySelectorAll('section').forEach(section => {
-      observer.observe(section);
-    });
-  </script>
+  <!-- JavaScript -->
+  <script src="js/main.js"></script>
 </body>
 </html>
