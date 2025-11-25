@@ -488,6 +488,6 @@ function initializeCarousel() {
         });
     });
 
-    // Auto-advance carousel every 4 seconds
-    setInterval(nextSlide, 4000);
+    // Auto-advance carousel every 3 seconds
+    setInterval(nextSlide, 3000);
 }
