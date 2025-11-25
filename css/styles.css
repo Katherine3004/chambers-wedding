@@ -4,9 +4,9 @@
 /* Color Palette - Beach Chic / Coastal Elegance */
 :root {
   /* Primary - Moody Ocean */
-  --ocean-dark: #3D5A5B;        /* Deep moody teal */
-  --ocean-mid: #5A7A7C;         /* Muted ocean teal */
-  --ocean-light: #7A9A9C;       /* Soft sea foam */
+  --ocean-dark: #8f9dac;        /* Deep moody blue-gray */
+  --ocean-mid: #b7c2c7;         /* Muted ocean blue */
+  --ocean-light: #d0d8db;       /* Soft sea foam */
   
   /* Neutrals - Sand & Stone */
   --sand-light: #E8E4DE;        /* Light sand */
@@ -67,7 +67,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navigation.scrolled {
-  background: rgba(61, 90, 91, 0.95);
+  background: rgba(143, 157, 172, 0.95);
   backdrop-filter: blur(10px);
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
   padding: 1rem 2rem;
@@ -152,7 +152,7 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.3);
+  background: linear-gradient(to bottom, rgba(143, 157, 172, 0.4), rgba(183, 194, 199, 0.3));
   z-index: 1;
 }
 
@@ -305,7 +305,7 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   overflow: hidden;
   border-radius: 5px;
-  box-shadow: 0 20px 50px rgba(61, 90, 91, 0.15);
+  box-shadow: 0 20px 50px rgba(143, 157, 172, 0.15);
 }
 
 .story-image-container::before {
@@ -388,7 +388,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .detail-card:hover {
-  box-shadow: 0 10px 30px rgba(61, 90, 91, 0.1);
+  box-shadow: 0 10px 30px rgba(143, 157, 172, 0.1);
   transform: translateY(-5px);
 }
 
