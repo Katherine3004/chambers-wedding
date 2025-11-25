@@ -289,7 +289,8 @@ if (rsvpForm) {
             }
         }
         
-        // Form is ready to submit
+        // Create formatted summary
+        createRSVPSummary();
         
         // Show loading state
         const submitBtn = this.querySelector('.btn-submit');
@@ -300,6 +301,82 @@ if (rsvpForm) {
     });
 }
 
+function createRSVPSummary() {
+    const primaryName = document.getElementById('primary-name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const attending = document.getElementById('attending').value;
+    const message = document.getElementById('message').value;
+    
+    let summary = `
+╔══════════════════════════════════════════════════════════════╗
+║                     WEDDING RSVP SUMMARY                    ║
+╚══════════════════════════════════════════════════════════════╝
+
+👤 PRIMARY CONTACT
+   Name: ${primaryName}
+   Email: ${email}
+   Phone: ${phone}
+
+📝 ATTENDANCE
+   Status: ${attending}`;
+
+    if (attending === 'Joyfully Accept') {
+        const guestCount = document.getElementById('guest-count').value;
+        summary += `
+   Number of Guests: ${guestCount}
+
+👥 GUEST INFORMATION`;
+
+        const count = parseInt(guestCount);
+        for (let i = 1; i <= count; i++) {
+            const guestInput = document.getElementById(`guest_${i}`);
+            if (guestInput && guestInput.style.display !== 'none' && guestInput.value.trim()) {
+                const label = i === 1 ? ' (Primary Contact)' : '';
+                summary += `
+   Guest ${i}${label}: ${guestInput.value}`;
+            }
+        }
+
+        // Check if any dietary requirements are filled
+        let hasDietary = false;
+        for (let i = 1; i <= count; i++) {
+            const dietaryInput = document.getElementById(`dietary_${i}`);
+            if (dietaryInput && dietaryInput.style.display !== 'none' && dietaryInput.value.trim()) {
+                hasDietary = true;
+                break;
+            }
+        }
+
+        if (hasDietary) {
+            summary += `
+
+🥗 DIETARY REQUIREMENTS`;
+            for (let i = 1; i <= count; i++) {
+                const dietaryInput = document.getElementById(`dietary_${i}`);
+                if (dietaryInput && dietaryInput.style.display !== 'none' && dietaryInput.value.trim()) {
+                    summary += `
+   Guest ${i}: ${dietaryInput.value}`;
+                }
+            }
+        }
+    }
+
+    if (message && message.trim()) {
+        summary += `
+
+💌 MESSAGE FOR THE COUPLE
+   "${message}"`;
+    }
+
+    summary += `
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Generated from Amilee & Mitchell's Wedding Website
+`;
+
+    document.getElementById('rsvp-summary').value = summary;
+}
 
 // Add parallax effect to hero section (optional)
 window.addEventListener('scroll', () => {
