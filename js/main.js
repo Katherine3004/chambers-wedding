@@ -419,6 +419,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize form fields properly
     initializeFormFields();
+    
+    // Initialize carousel
+    initializeCarousel();
 });
 
 function initializeFormFields() {
@@ -441,4 +444,50 @@ function initializeFormFields() {
             }
         }
     }
+}
+
+// Carousel functionality
+function initializeCarousel() {
+    const images = document.querySelectorAll('.carousel-image');
+    const dots = document.querySelectorAll('.dot');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let currentSlide = 0;
+
+    if (!images.length) return; // Exit if no carousel found
+
+    function showSlide(index) {
+        // Remove active class from all images and dots
+        images.forEach(img => img.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+
+        // Add active class to current image and dot
+        images[index].classList.add('active');
+        dots[index].classList.add('active');
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % images.length;
+        showSlide(currentSlide);
+    }
+
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + images.length) % images.length;
+        showSlide(currentSlide);
+    }
+
+    // Event listeners
+    if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+    if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+
+    // Dot navigation
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            currentSlide = index;
+            showSlide(currentSlide);
+        });
+    });
+
+    // Auto-advance carousel every 4 seconds
+    setInterval(nextSlide, 4000);
 }
