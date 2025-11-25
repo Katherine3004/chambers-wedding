@@ -465,47 +465,50 @@ h1, h2, h3, h4, h5, h6 {
 /* RSVP Section */
 .rsvp-section {
   padding: 6rem 2rem;
-  background: linear-gradient(135deg, var(--ocean-dark) 0%, var(--ocean-mid) 100%);
-  color: var(--text-light);
+  background: linear-gradient(135deg, rgba(143, 157, 172, 0.95) 0%, rgba(183, 194, 199, 0.85) 100%);
+  color: var(--text-dark);
 }
 
 .section-subtitle {
   font-family: var(--font-sans);
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 300;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
 }
 
 .rsvp-form {
-  max-width: 600px;
+  max-width: 700px;
   margin: 0 auto;
 }
 
 .form-group {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .form-group label {
   display: block;
   font-family: var(--font-sans);
-  font-size: 0.85rem;
-  letter-spacing: 0.1em;
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  margin-bottom: 0.5rem;
-  color: var(--champagne);
+  margin-bottom: 0.75rem;
+  color: #8B7355;  /* Sandy brown to match button */
+  font-weight: 400;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
   width: 100%;
-  padding: 1rem;
+  padding: 1.1rem 1rem;
   font-family: var(--font-sans);
   font-size: 1rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
-  color: var(--text-light);
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  border-bottom: 2px solid rgba(74, 63, 54, 0.3);
+  border-radius: 0;
+  color: #2C3E3E;  /* Dark text for better readability */
   transition: all 0.3s ease;
 }
 
@@ -513,48 +516,123 @@ h1, h2, h3, h4, h5, h6 {
 .form-group select:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: var(--champagne);
-  background: rgba(255, 255, 255, 0.15);
+  border-bottom-color: #8B7355;  /* Darker sand brown */
+  background: rgba(255, 255, 255, 0.25);
 }
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-  color: rgba(255, 255, 255, 0.5);
+  color: transparent;
+}
+
+.form-group input:not(:placeholder-shown),
+.form-group textarea:not(:placeholder-shown) {
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .form-group textarea {
-  min-height: 100px;
+  min-height: 80px;
   resize: vertical;
+  border: 2px solid rgba(74, 63, 54, 0.3);
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+.form-group textarea::placeholder {
+  color: rgba(74, 63, 54, 0.5);
 }
 
 .form-group select {
   cursor: pointer;
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23C9B896' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%234a3f36' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 1rem center;
   padding-right: 2.5rem;
+  border-radius: 0;
 }
 
 .form-group select option {
-  background: var(--ocean-dark);
-  color: var(--text-light);
+  background: white;
+  color: #2C3E3E;
+  padding: 0.5rem;
 }
 
 .guest-names-container {
-  margin: 1.5rem 0;
+  margin: 2rem 0;
+}
+
+.guest-names-title {
+  margin-bottom: 1.5rem;
+}
+
+.guest-names-title label {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #8B7355;
+  font-weight: 400;
 }
 
 .guest-field {
-  padding: 0.5rem;
-  margin-bottom: 1rem;
-  border-left: 2px solid var(--champagne);
-  padding-left: 1rem;
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+  position: relative;
 }
 
-.guest-field input[readonly] {
-  background: rgba(255, 255, 255, 0.05);
-  color: rgba(255, 255, 255, 0.7);
+.guest-field::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #8B7355;
+  opacity: 0.5;
+}
+
+.guest-field input {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Dietary Requirements Container */
+.dietary-container {
+  margin: 2rem 0;
+}
+
+.dietary-title {
+  margin-bottom: 1.5rem;
+}
+
+.dietary-title label {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #8B7355;
+  font-weight: 400;
+}
+
+.dietary-field {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.dietary-field::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #8B7355;
+  opacity: 0.5;
+}
+
+.dietary-field input {
+  background: rgba(255, 255, 255, 0.08);
 }
 
 /* Buttons */
@@ -591,22 +669,29 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-submit {
   width: 100%;
-  padding: 1.2rem 2rem;
-  margin-top: 1rem;
+  padding: 1.3rem 2rem;
+  margin-top: 2rem;
   font-family: var(--font-sans);
-  font-size: 0.9rem;
-  letter-spacing: 0.2em;
+  font-size: 1rem;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
-  background: transparent;
-  border: 2px solid var(--champagne);
-  color: var(--champagne);
+  background: #8B7355;
+  border: none;
+  color: white;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
+  font-weight: 400;
 }
 
 .btn-submit:hover {
-  background: var(--champagne);
-  color: var(--ocean-dark);
+  background: #6d5a45;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(139, 115, 85, 0.3);
+}
+
+.btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 /* Gift Registry Section */

@@ -138,19 +138,25 @@ const attendingSelect = document.getElementById('attending');
 const guestCountGroup = document.getElementById('guest-count-group');
 const guestCountSelect = document.getElementById('guest-count');
 const guestNamesContainer = document.getElementById('guest-names-container');
-const dietaryGroup = document.getElementById('dietary-group');
+const dietaryContainer = document.getElementById('dietary-container');
 
 // Show/hide sections based on attendance
 if (attendingSelect) {
     attendingSelect.addEventListener('change', function() {
         if (this.value === 'yes') {
             guestCountGroup.style.display = 'block';
-            dietaryGroup.style.display = 'block';
-            generateGuestFields(parseInt(guestCountSelect.value));
+            // Don't show dietary until guest count is selected
+            // Don't generate fields until a count is selected
+            guestNamesContainer.innerHTML = '';
+            dietaryContainer.innerHTML = '';
         } else {
             guestCountGroup.style.display = 'none';
-            dietaryGroup.style.display = 'none';
+            dietaryContainer.style.display = 'none';
             guestNamesContainer.innerHTML = '';
+            dietaryContainer.innerHTML = '';
+            if (guestCountSelect) {
+                guestCountSelect.value = '';
+            }
         }
     });
 }
@@ -158,33 +164,59 @@ if (attendingSelect) {
 // Generate guest name fields when count changes
 if (guestCountSelect) {
     guestCountSelect.addEventListener('change', function() {
-        generateGuestFields(parseInt(this.value));
+        const count = parseInt(this.value);
+        if (!isNaN(count) && count > 0) {
+            generateGuestFields(count);
+            generateDietaryFields(count);
+            dietaryContainer.style.display = 'block';
+        } else {
+            guestNamesContainer.innerHTML = '';
+            dietaryContainer.innerHTML = '';
+            dietaryContainer.style.display = 'none';
+        }
     });
 }
 
 function generateGuestFields(count) {
     guestNamesContainer.innerHTML = '';
     
+    // Add a title for the guest names section
+    if (count > 0) {
+        const titleDiv = document.createElement('div');
+        titleDiv.className = 'guest-names-title';
+        titleDiv.innerHTML = '<label>Guest Names</label>';
+        guestNamesContainer.appendChild(titleDiv);
+    }
+    
     for (let i = 1; i <= count; i++) {
         const guestDiv = document.createElement('div');
         guestDiv.className = 'form-group guest-field';
         guestDiv.innerHTML = `
-            <label for="guest-${i}">${i === 1 ? 'Guest 1 (Primary Contact)' : 'Guest ' + i + ' Full Name'}</label>
-            <input type="text" id="guest-${i}" name="guest-${i}" placeholder="${i === 1 ? 'Your name (same as above)' : 'Enter guest name'}" ${i === 1 ? 'readonly' : 'required'}>
+            <label for="guest_${i}">Guest ${i} ${i === 1 ? '(Primary Contact)' : 'Full Name'}</label>
+            <input type="text" id="guest_${i}" name="guest_${i}" placeholder="${i === 1 ? ' ' : ' '}" ${i === 1 ? '' : 'required'}>
         `;
         guestNamesContainer.appendChild(guestDiv);
         
         // Auto-fill first guest with primary name
         if (i === 1) {
-            const primaryName = document.getElementById('primary-name');
-            const guest1 = document.getElementById('guest-1');
-            if (primaryName && guest1) {
-                guest1.value = primaryName.value;
-                
-                primaryName.addEventListener('input', function() {
-                    guest1.value = this.value;
-                });
-            }
+            setTimeout(() => {
+                const primaryName = document.getElementById('primary-name');
+                const guest1 = document.getElementById('guest_1');
+                if (primaryName && guest1) {
+                    guest1.value = primaryName.value;
+                    
+                    // Remove any existing listeners before adding new one
+                    const newPrimaryName = primaryName.cloneNode(true);
+                    primaryName.parentNode.replaceChild(newPrimaryName, primaryName);
+                    
+                    document.getElementById('primary-name').addEventListener('input', function() {
+                        const currentGuest1 = document.getElementById('guest_1');
+                        if (currentGuest1) {
+                            currentGuest1.value = this.value;
+                        }
+                    });
+                }
+            }, 50);
         }
     }
     
@@ -197,33 +229,94 @@ function generateGuestFields(count) {
             field.style.transition = 'all 0.3s ease';
             field.style.opacity = '1';
             field.style.transform = 'translateY(0)';
-        }, index * 100);
+        }, index * 50);
     });
 }
 
-// RSVP Form Submit Handler
+function generateDietaryFields(count) {
+    dietaryContainer.innerHTML = '';
+    
+    // Add a title for the dietary section
+    const titleDiv = document.createElement('div');
+    titleDiv.className = 'dietary-title';
+    titleDiv.innerHTML = '<label>Dietary Requirements</label>';
+    dietaryContainer.appendChild(titleDiv);
+    
+    for (let i = 1; i <= count; i++) {
+        const dietaryDiv = document.createElement('div');
+        dietaryDiv.className = 'form-group dietary-field';
+        dietaryDiv.innerHTML = `
+            <label for="dietary_${i}">Guest ${i} Dietary Requirements</label>
+            <input type="text" id="dietary_${i}" name="dietary_${i}" placeholder="Any allergies or dietary restrictions">
+        `;
+        dietaryContainer.appendChild(dietaryDiv);
+    }
+    
+    // Add animation
+    const fields = dietaryContainer.querySelectorAll('.dietary-field');
+    fields.forEach((field, index) => {
+        field.style.opacity = '0';
+        field.style.transform = 'translateY(10px)';
+        setTimeout(() => {
+            field.style.transition = 'all 0.3s ease';
+            field.style.opacity = '1';
+            field.style.transform = 'translateY(0)';
+        }, index * 50);
+    });
+}
+
+// RSVP Form Submit Handler - using Netlify Forms
 if (rsvpForm) {
     rsvpForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // Get form data
+        // Validate that guest names are filled if attending
+        const attending = document.getElementById('attending').value;
+        if (attending === 'yes') {
+            const guestCount = document.getElementById('guest-count').value;
+            if (!guestCount || guestCount === '') {
+                alert('Please select the number of guests attending.');
+                return false;
+            }
+        }
+        
+        // Show a loading state on the button
+        const submitBtn = this.querySelector('.btn-submit');
+        if (submitBtn) {
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+        }
+        
+        // Submit form using fetch API for better handling
         const formData = new FormData(rsvpForm);
-        const data = {};
-        formData.forEach((value, key) => {
-            data[key] = value;
+        
+        fetch('/', {
+            method: 'POST',
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams(formData).toString()
+        })
+        .then(() => {
+            // Show success message
+            alert('Thank you for your RSVP! We\'ll be in touch soon.');
+            // Reset form
+            rsvpForm.reset();
+            guestCountGroup.style.display = 'none';
+            dietaryContainer.style.display = 'none';
+            guestNamesContainer.innerHTML = '';
+            dietaryContainer.innerHTML = '';
+            
+            // Reset button
+            submitBtn.textContent = 'Send RSVP';
+            submitBtn.disabled = false;
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert('There was an error sending your RSVP. Please try again.');
+            
+            // Reset button
+            submitBtn.textContent = 'Send RSVP';
+            submitBtn.disabled = false;
         });
-        
-        // Here you would normally send the data to a server
-        console.log('RSVP Data:', data);
-        
-        // Show success message
-        alert('Thank you for your RSVP! We\'ll send you a confirmation email soon.');
-        
-        // Reset form
-        rsvpForm.reset();
-        guestCountGroup.style.display = 'none';
-        dietaryGroup.style.display = 'none';
-        guestNamesContainer.innerHTML = '';
     });
 }
 
