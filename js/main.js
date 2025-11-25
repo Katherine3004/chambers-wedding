@@ -197,7 +197,9 @@ function showGuestFields(count) {
         if (field && input) {
             field.style.display = 'block';
             input.disabled = false;
-            input.setAttribute('name', `${String(i + 5).padStart(2, '0')}_guest_${i}_name`); // Restore name attribute
+            const nameAttr = `${String(i + 5).padStart(2, '0')}_guest_${i}_name`;
+            input.setAttribute('name', nameAttr);
+            console.log(`Added name attribute: ${nameAttr} to guest ${i}`); // Debug log
             // Set required attribute for all guest fields
             input.required = true;
         }
@@ -235,7 +237,9 @@ function showDietaryFields(count) {
         if (field && input) {
             field.style.display = 'block';
             input.disabled = false;
-            input.setAttribute('name', `${String(i + 11).padStart(2, '0')}_guest_${i}_dietary_requirements`); // Restore name attribute
+            const nameAttr = `${String(i + 11).padStart(2, '0')}_guest_${i}_dietary_requirements`;
+            input.setAttribute('name', nameAttr);
+            console.log(`Added name attribute: ${nameAttr} to dietary ${i}`); // Debug log
         }
     }
 }
@@ -350,4 +354,29 @@ function preloadImages() {
 document.addEventListener('DOMContentLoaded', () => {
     preloadImages();
     updateActiveLink();
+    
+    // Initialize form fields properly
+    initializeFormFields();
 });
+
+function initializeFormFields() {
+    // Make sure all guest and dietary fields start without name attributes
+    hideAllGuestFields();
+    hideAllDietaryFields();
+    
+    // Check if form is already filled (for page refreshes)
+    const attendingSelect = document.getElementById('attending');
+    const guestCountSelect = document.getElementById('guest-count');
+    
+    if (attendingSelect && attendingSelect.value === 'Joyfully Accept') {
+        guestCountGroup.style.display = 'block';
+        
+        if (guestCountSelect && guestCountSelect.value) {
+            const count = parseInt(guestCountSelect.value);
+            if (!isNaN(count) && count > 0) {
+                showGuestFields(count);
+                showDietaryFields(count);
+            }
+        }
+    }
+}
