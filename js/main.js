@@ -289,8 +289,7 @@ if (rsvpForm) {
             }
         }
         
-        // Create formatted email content
-        createFormattedEmail();
+        // Form is ready to submit
         
         // Show loading state
         const submitBtn = this.querySelector('.btn-submit');
@@ -301,83 +300,6 @@ if (rsvpForm) {
     });
 }
 
-function createFormattedEmail() {
-    const primaryName = document.getElementById('primary-name').value;
-    const email = document.getElementById('email').value;
-    const phone = document.getElementById('phone').value;
-    const attending = document.getElementById('attending').value;
-    const message = document.getElementById('message').value;
-    
-    let html = `
-    <table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif;">
-        <tr style="background-color: #f2f2f2;">
-            <td style="border: 1px solid #ddd; padding: 12px; font-weight: bold;">Field</td>
-            <td style="border: 1px solid #ddd; padding: 12px; font-weight: bold;">Information</td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid #ddd; padding: 8px;">Primary Contact</td>
-            <td style="border: 1px solid #ddd; padding: 8px;">${primaryName}</td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid #ddd; padding: 8px;">Email</td>
-            <td style="border: 1px solid #ddd; padding: 8px;">${email}</td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid #ddd; padding: 8px;">Phone</td>
-            <td style="border: 1px solid #ddd; padding: 8px;">${phone}</td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid #ddd; padding: 8px;">Attending</td>
-            <td style="border: 1px solid #ddd; padding: 8px;">${attending}</td>
-        </tr>`;
-
-    if (attending === 'Joyfully Accept') {
-        const guestCount = document.getElementById('guest-count').value;
-        html += `
-        <tr>
-            <td style="border: 1px solid #ddd; padding: 8px;">Number of Guests</td>
-            <td style="border: 1px solid #ddd; padding: 8px;">${guestCount}</td>
-        </tr>`;
-
-        // Add guest names
-        const count = parseInt(guestCount);
-        for (let i = 1; i <= count; i++) {
-            const guestInput = document.getElementById(`guest_${i}`);
-            const dietaryInput = document.getElementById(`dietary_${i}`);
-            if (guestInput && guestInput.style.display !== 'none') {
-                html += `
-        <tr>
-            <td style="border: 1px solid #ddd; padding: 8px;">Guest ${i} Name</td>
-            <td style="border: 1px solid #ddd; padding: 8px;">${guestInput.value}</td>
-        </tr>`;
-            }
-        }
-
-        // Add dietary requirements
-        for (let i = 1; i <= count; i++) {
-            const dietaryInput = document.getElementById(`dietary_${i}`);
-            if (dietaryInput && dietaryInput.style.display !== 'none' && dietaryInput.value.trim()) {
-                html += `
-        <tr>
-            <td style="border: 1px solid #ddd; padding: 8px;">Guest ${i} Dietary Requirements</td>
-            <td style="border: 1px solid #ddd; padding: 8px;">${dietaryInput.value}</td>
-        </tr>`;
-            }
-        }
-    }
-
-    if (message) {
-        html += `
-        <tr>
-            <td style="border: 1px solid #ddd; padding: 8px;">Message</td>
-            <td style="border: 1px solid #ddd; padding: 8px;">${message}</td>
-        </tr>`;
-    }
-
-    html += '</table>';
-    
-    document.getElementById('formatted-rsvp').value = html;
-}
 
 // Add parallax effect to hero section (optional)
 window.addEventListener('scroll', () => {

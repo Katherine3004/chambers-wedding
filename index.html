@@ -143,7 +143,7 @@
       <h2 class="section-title" style="text-align: center; color: #2C3E3E;">RSVP</h2>
       <p class="section-subtitle" style="text-align: center; color: #8B7355; margin-bottom: 3rem;">Please respond by April 1, 2026</p>
       
-      <form class="rsvp-form" id="rsvpForm" name="wedding-rsvp" netlify netlify-honeypot="bot-field">
+      <form class="rsvp-form" id="rsvpForm" name="wedding-rsvp" method="POST" data-netlify="true" netlify-honeypot="bot-field">
         <!-- Honeypot field for spam protection (hidden from users) -->
         <div style="display:none">
           <label>Don't fill this out if you're human: <input name="bot-field" /></label>
@@ -271,9 +271,6 @@
         
         <!-- Dynamic subject line will be populated by JavaScript -->
         <input type="hidden" name="subject" id="dynamic-subject" value="New Wedding RSVP from Amilee & Mitchell's Website">
-        
-        <!-- Hidden field for formatted email content -->
-        <input type="hidden" name="00_formatted_rsvp" id="formatted-rsvp" value="">
         
         <button type="submit" class="btn btn-submit">Send RSVP</button>
       </form>
