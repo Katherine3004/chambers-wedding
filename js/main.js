@@ -185,7 +185,8 @@ function showGuestFields(count) {
             field.style.display = 'none';
             input.value = '';
             input.required = false;
-            input.disabled = true; // Disable unused fields so they don't submit
+            input.disabled = true;
+            input.removeAttribute('name'); // Remove name so field won't be submitted
         }
     }
     
@@ -195,7 +196,8 @@ function showGuestFields(count) {
         const input = document.getElementById(`guest_${i}`);
         if (field && input) {
             field.style.display = 'block';
-            input.disabled = false; // Enable the field
+            input.disabled = false;
+            input.setAttribute('name', `${String(i + 5).padStart(2, '0')}_guest_${i}_name`); // Restore name attribute
             // Set required attribute for all guest fields
             input.required = true;
         }
@@ -221,7 +223,8 @@ function showDietaryFields(count) {
         if (field && input) {
             field.style.display = 'none';
             input.value = '';
-            input.disabled = true; // Disable unused fields so they don't submit
+            input.disabled = true;
+            input.removeAttribute('name'); // Remove name so field won't be submitted
         }
     }
     
@@ -231,7 +234,8 @@ function showDietaryFields(count) {
         const input = document.getElementById(`dietary_${i}`);
         if (field && input) {
             field.style.display = 'block';
-            input.disabled = false; // Enable the field
+            input.disabled = false;
+            input.setAttribute('name', `${String(i + 11).padStart(2, '0')}_guest_${i}_dietary_requirements`); // Restore name attribute
         }
     }
 }
@@ -245,7 +249,8 @@ function hideAllGuestFields() {
             field.style.display = 'none';
             input.value = '';
             input.required = false;
-            input.disabled = true; // Disable all fields when hidden
+            input.disabled = true;
+            input.removeAttribute('name'); // Remove name so field won't be submitted
         }
     }
 }
@@ -258,7 +263,8 @@ function hideAllDietaryFields() {
         if (field && input) {
             field.style.display = 'none';
             input.value = '';
-            input.disabled = true; // Disable all fields when hidden
+            input.disabled = true;
+            input.removeAttribute('name'); // Remove name so field won't be submitted
         }
     }
 }
