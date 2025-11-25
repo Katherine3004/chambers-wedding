@@ -186,7 +186,6 @@ function showGuestFields(count) {
             input.value = '';
             input.required = false;
             input.disabled = true;
-            input.removeAttribute('name'); // Remove name so field won't be submitted
         }
     }
     
@@ -197,9 +196,6 @@ function showGuestFields(count) {
         if (field && input) {
             field.style.display = 'block';
             input.disabled = false;
-            const nameAttr = `${String(i + 5).padStart(2, '0')}_guest_${i}_name`;
-            input.setAttribute('name', nameAttr);
-            // Set required attribute for all guest fields
             input.required = true;
         }
     }
@@ -225,7 +221,6 @@ function showDietaryFields(count) {
             field.style.display = 'none';
             input.value = '';
             input.disabled = true;
-            input.removeAttribute('name'); // Remove name so field won't be submitted
         }
     }
     
@@ -236,8 +231,6 @@ function showDietaryFields(count) {
         if (field && input) {
             field.style.display = 'block';
             input.disabled = false;
-            const nameAttr = `${String(i + 11).padStart(2, '0')}_guest_${i}_dietary_requirements`;
-            input.setAttribute('name', nameAttr);
         }
     }
 }
@@ -252,7 +245,6 @@ function hideAllGuestFields() {
             input.value = '';
             input.required = false;
             input.disabled = true;
-            input.removeAttribute('name'); // Remove name so field won't be submitted
         }
     }
 }
@@ -266,7 +258,6 @@ function hideAllDietaryFields() {
             field.style.display = 'none';
             input.value = '';
             input.disabled = true;
-            input.removeAttribute('name'); // Remove name so field won't be submitted
         }
     }
 }
@@ -293,33 +284,18 @@ if (primaryNameInput) {
 // RSVP Form Validation (Let Netlify handle submission)
 if (rsvpForm) {
     rsvpForm.addEventListener('submit', function(e) {
-        // Only validate - don't prevent default submission
+        // Basic validation only
         const attending = document.getElementById('attending').value;
         if (attending === 'Joyfully Accept') {
             const guestCount = document.getElementById('guest-count').value;
             if (!guestCount || guestCount === '') {
                 e.preventDefault();
                 alert('Please select the number of guests attending.');
-                return false;
-            }
-            
-            // Double-check that name attributes are set for visible fields
-            const count = parseInt(guestCount);
-            for (let i = 1; i <= count; i++) {
-                const guestInput = document.getElementById(`guest_${i}`);
-                const dietaryInput = document.getElementById(`dietary_${i}`);
-                
-                if (guestInput && !guestInput.hasAttribute('name')) {
-                    guestInput.setAttribute('name', `${String(i + 5).padStart(2, '0')}_guest_${i}_name`);
-                }
-                if (dietaryInput && !dietaryInput.hasAttribute('name')) {
-                    dietaryInput.setAttribute('name', `${String(i + 11).padStart(2, '0')}_guest_${i}_dietary_requirements`);
-                }
+                return;
             }
         }
         
-        // Let Netlify handle the form submission naturally
-        // Show a loading state on the button
+        // Show loading state
         const submitBtn = this.querySelector('.btn-submit');
         if (submitBtn) {
             submitBtn.textContent = 'Sending...';
