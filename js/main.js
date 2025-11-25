@@ -143,7 +143,7 @@ const dietaryContainer = document.getElementById('dietary-container');
 // Show/hide sections based on attendance
 if (attendingSelect) {
     attendingSelect.addEventListener('change', function() {
-        if (this.value === 'yes') {
+        if (this.value === 'Joyfully Accept') {
             guestCountGroup.style.display = 'block';
             // Don't show guest names/dietary until guest count is selected
             hideAllGuestFields();
@@ -177,30 +177,27 @@ function showGuestFields(count) {
     // Show the guest names container
     guestNamesContainer.style.display = 'block';
     
-    // Hide all guest fields first
+    // Hide all guest fields first and clear/disable unused ones
     for (let i = 1; i <= 6; i++) {
         const field = document.getElementById(`guest-field-${i}`);
-        if (field) {
+        const input = document.getElementById(`guest_${i}`);
+        if (field && input) {
             field.style.display = 'none';
-            // Clear the input
-            const input = document.getElementById(`guest_${i}`);
-            if (input && i > 1) {
-                input.value = '';
-                input.required = false;
-            }
+            input.value = '';
+            input.required = false;
+            input.disabled = true; // Disable unused fields so they don't submit
         }
     }
     
-    // Show only the needed guest fields
+    // Show and enable only the needed guest fields
     for (let i = 1; i <= count; i++) {
         const field = document.getElementById(`guest-field-${i}`);
-        if (field) {
+        const input = document.getElementById(`guest_${i}`);
+        if (field && input) {
             field.style.display = 'block';
-            // Set required attribute for all except first guest
-            const input = document.getElementById(`guest_${i}`);
-            if (input && i > 1) {
-                input.required = true;
-            }
+            input.disabled = false; // Enable the field
+            // Set required attribute for all guest fields
+            input.required = true;
         }
     }
     
@@ -209,6 +206,7 @@ function showGuestFields(count) {
     const guest1 = document.getElementById('guest_1');
     if (primaryName && guest1) {
         guest1.value = primaryName.value;
+        guest1.required = false; // Primary contact not required since it's auto-filled
     }
 }
 
@@ -216,24 +214,24 @@ function showDietaryFields(count) {
     // Show the dietary container
     dietaryContainer.style.display = 'block';
     
-    // Hide all dietary fields first
+    // Hide all dietary fields first and disable unused ones
     for (let i = 1; i <= 6; i++) {
         const field = document.getElementById(`dietary-field-${i}`);
-        if (field) {
+        const input = document.getElementById(`dietary_${i}`);
+        if (field && input) {
             field.style.display = 'none';
-            // Clear the input
-            const input = document.getElementById(`dietary_${i}`);
-            if (input) {
-                input.value = '';
-            }
+            input.value = '';
+            input.disabled = true; // Disable unused fields so they don't submit
         }
     }
     
-    // Show only the needed dietary fields
+    // Show and enable only the needed dietary fields
     for (let i = 1; i <= count; i++) {
         const field = document.getElementById(`dietary-field-${i}`);
-        if (field) {
+        const input = document.getElementById(`dietary_${i}`);
+        if (field && input) {
             field.style.display = 'block';
+            input.disabled = false; // Enable the field
         }
     }
 }
@@ -242,13 +240,12 @@ function hideAllGuestFields() {
     guestNamesContainer.style.display = 'none';
     for (let i = 1; i <= 6; i++) {
         const field = document.getElementById(`guest-field-${i}`);
-        if (field) {
+        const input = document.getElementById(`guest_${i}`);
+        if (field && input) {
             field.style.display = 'none';
-            const input = document.getElementById(`guest_${i}`);
-            if (input) {
-                input.value = '';
-                input.required = false;
-            }
+            input.value = '';
+            input.required = false;
+            input.disabled = true; // Disable all fields when hidden
         }
     }
 }
@@ -257,23 +254,30 @@ function hideAllDietaryFields() {
     dietaryContainer.style.display = 'none';
     for (let i = 1; i <= 6; i++) {
         const field = document.getElementById(`dietary-field-${i}`);
-        if (field) {
+        const input = document.getElementById(`dietary_${i}`);
+        if (field && input) {
             field.style.display = 'none';
-            const input = document.getElementById(`dietary_${i}`);
-            if (input) {
-                input.value = '';
-            }
+            input.value = '';
+            input.disabled = true; // Disable all fields when hidden
         }
     }
 }
 
-// Auto-sync primary name with guest 1
+// Auto-sync primary name with guest 1 and update subject line
 const primaryNameInput = document.getElementById('primary-name');
 if (primaryNameInput) {
     primaryNameInput.addEventListener('input', function() {
         const guest1 = document.getElementById('guest_1');
         if (guest1) {
             guest1.value = this.value;
+        }
+        
+        // Update subject line dynamically
+        const subjectField = document.getElementById('dynamic-subject');
+        if (subjectField && this.value.trim()) {
+            subjectField.value = `New Wedding RSVP from ${this.value.trim()}`;
+        } else if (subjectField) {
+            subjectField.value = "New Wedding RSVP from Amilee & Mitchell's Website";
         }
     });
 }
@@ -283,7 +287,7 @@ if (rsvpForm) {
     rsvpForm.addEventListener('submit', function(e) {
         // Only validate - don't prevent default submission
         const attending = document.getElementById('attending').value;
-        if (attending === 'yes') {
+        if (attending === 'Joyfully Accept') {
             const guestCount = document.getElementById('guest-count').value;
             if (!guestCount || guestCount === '') {
                 e.preventDefault();
