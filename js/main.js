@@ -177,7 +177,7 @@ function showGuestFields(count) {
     // Show the guest names container
     guestNamesContainer.style.display = 'block';
     
-    // Hide all guest fields first and clear/disable unused ones
+    // Clear all fields and hide them
     for (let i = 1; i <= 6; i++) {
         const field = document.getElementById(`guest-field-${i}`);
         const input = document.getElementById(`guest_${i}`);
@@ -185,17 +185,15 @@ function showGuestFields(count) {
             field.style.display = 'none';
             input.value = '';
             input.required = false;
-            input.disabled = true;
         }
     }
     
-    // Show and enable only the needed guest fields
+    // Show only the needed guest fields
     for (let i = 1; i <= count; i++) {
         const field = document.getElementById(`guest-field-${i}`);
         const input = document.getElementById(`guest_${i}`);
         if (field && input) {
             field.style.display = 'block';
-            input.disabled = false;
             input.required = true;
         }
     }
@@ -213,24 +211,22 @@ function showDietaryFields(count) {
     // Show the dietary container
     dietaryContainer.style.display = 'block';
     
-    // Hide all dietary fields first and disable unused ones
+    // Clear all fields and hide them
     for (let i = 1; i <= 6; i++) {
         const field = document.getElementById(`dietary-field-${i}`);
         const input = document.getElementById(`dietary_${i}`);
         if (field && input) {
             field.style.display = 'none';
             input.value = '';
-            input.disabled = true;
         }
     }
     
-    // Show and enable only the needed dietary fields
+    // Show only the needed dietary fields
     for (let i = 1; i <= count; i++) {
         const field = document.getElementById(`dietary-field-${i}`);
         const input = document.getElementById(`dietary_${i}`);
         if (field && input) {
             field.style.display = 'block';
-            input.disabled = false;
         }
     }
 }
@@ -244,7 +240,6 @@ function hideAllGuestFields() {
             field.style.display = 'none';
             input.value = '';
             input.required = false;
-            input.disabled = true;
         }
     }
 }
@@ -257,7 +252,6 @@ function hideAllDietaryFields() {
         if (field && input) {
             field.style.display = 'none';
             input.value = '';
-            input.disabled = true;
         }
     }
 }
