@@ -309,16 +309,16 @@ function createRSVPSummary() {
     const message = document.getElementById('message').value;
     
     let summary = `
-╔══════════════════════════════════════════════════════════════╗
-║                     WEDDING RSVP SUMMARY                    ║
-╚══════════════════════════════════════════════════════════════╝
+========================================
+         WEDDING RSVP SUMMARY
+========================================
 
-👤 PRIMARY CONTACT
+PRIMARY CONTACT
    Name: ${primaryName}
    Email: ${email}
    Phone: ${phone}
 
-📝 ATTENDANCE
+ATTENDANCE
    Status: ${attending}`;
 
     if (attending === 'Joyfully Accept') {
@@ -326,7 +326,7 @@ function createRSVPSummary() {
         summary += `
    Number of Guests: ${guestCount}
 
-👥 GUEST INFORMATION`;
+GUEST INFORMATION`;
 
         const count = parseInt(guestCount);
         for (let i = 1; i <= count; i++) {
@@ -351,7 +351,7 @@ function createRSVPSummary() {
         if (hasDietary) {
             summary += `
 
-🥗 DIETARY REQUIREMENTS`;
+DIETARY REQUIREMENTS`;
             for (let i = 1; i <= count; i++) {
                 const dietaryInput = document.getElementById(`dietary_${i}`);
                 if (dietaryInput && dietaryInput.style.display !== 'none' && dietaryInput.value.trim()) {
@@ -365,13 +365,13 @@ function createRSVPSummary() {
     if (message && message.trim()) {
         summary += `
 
-💌 MESSAGE FOR THE COUPLE
+MESSAGE FOR THE COUPLE
    "${message}"`;
     }
 
     summary += `
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+========================================
 Generated from Amilee & Mitchell's Wedding Website
 `;
 
