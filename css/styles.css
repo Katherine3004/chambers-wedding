@@ -46,6 +46,7 @@ body {
   line-height: 1.6;
   background-color: var(--cream);
   overflow-x: hidden;
+  padding-bottom: 100px; /* Space for fixed countdown */
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -230,50 +231,73 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Countdown Section */
 .countdown-section {
-  background: var(--cream);
-  padding: 5rem 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem 1rem;
   text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  border-top: 1px solid rgba(143, 157, 172, 0.1);
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.05);
 }
 
 .countdown-title {
-  font-family: var(--font-serif);
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
   font-weight: 300;
-  color: var(--ocean-dark);
-  margin-bottom: 3rem;
-  letter-spacing: 0.05em;
+  color: var(--stone);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.7;
 }
 
 .countdown-container {
   display: flex;
   justify-content: center;
-  gap: 3rem;
-  flex-wrap: wrap;
-  max-width: 800px;
+  align-items: center;
+  gap: 2.5rem;
+  flex-wrap: nowrap;
+  max-width: 600px;
   margin: 0 auto;
 }
 
 .countdown-item {
-  text-align: center;
-  min-width: 100px;
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  position: relative;
+}
+
+.countdown-item:not(:last-child)::after {
+  content: '·';
+  position: absolute;
+  right: -1.3rem;
+  color: var(--champagne);
+  font-size: 1rem;
+  opacity: 0.5;
 }
 
 .countdown-number {
   font-family: var(--font-serif);
-  font-size: clamp(3rem, 5vw, 4rem);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
   font-weight: 300;
   color: var(--ocean-dark);
   line-height: 1;
-  margin-bottom: 0.5rem;
+  font-style: italic;
 }
 
 .countdown-label {
   font-family: var(--font-sans);
-  font-size: 0.8rem;
+  font-size: 0.65rem;
   font-weight: 300;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-transform: lowercase;
   color: var(--stone);
+  opacity: 0.8;
 }
 
 /* Our Story Section */
@@ -900,7 +924,19 @@ h1, h2, h3, h4, h5, h6 {
   }
   
   .countdown-container {
-    gap: 2rem;
+    gap: 1.5rem;
+  }
+  
+  .countdown-item:not(:last-child)::after {
+    right: -0.8rem;
+  }
+  
+  .countdown-section {
+    padding: 1rem 0.5rem;
+  }
+  
+  .countdown-title {
+    font-size: 0.65rem;
   }
   
   .registry-buttons {
@@ -924,6 +960,19 @@ h1, h2, h3, h4, h5, h6 {
   }
   
   .countdown-number {
-    font-size: clamp(2rem, 8vw, 3rem);
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+  }
+  
+  .countdown-label {
+    font-size: 0.55rem;
+  }
+  
+  .countdown-container {
+    gap: 1.2rem;
+  }
+  
+  .countdown-item:not(:last-child)::after {
+    right: -0.65rem;
+    font-size: 0.8rem;
   }
 }
