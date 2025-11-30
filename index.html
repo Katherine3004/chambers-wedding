@@ -32,11 +32,8 @@
   <section class="hero" id="hero">
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <p class="hero-subtitle">The Wedding of</p>
       <h1 class="hero-names">
-        <span class="name">Amilee</span>
-        <span class="ampersand">&</span>
-        <span class="name">Mitchell</span>
+        <span class="name">Cheers to the Chambers</span>
       </h1>
       <div class="hero-details">
         <span class="hero-date">23.05.2026</span>
@@ -48,7 +45,7 @@
   <!-- Countdown Timer Section -->
   <section class="countdown-section" id="countdown">
     <div class="container">
-      <h2 class="countdown-title">Counting Down to Our Big Day</h2>
+      <h2 class="countdown-title">The Big Day</h2>
       <div class="countdown-container">
         <div class="countdown-item">
           <div id="days" class="countdown-number">0</div>
@@ -124,11 +121,63 @@
           <h3>Reception</h3>
           <p>Following the ceremony, we'll celebrate with dinner, dancing, and festivities continuing into the evening under the stars. Prepare for an night of joy, laughter, and unforgettable memories.</p>
         </div>
-        <div class="detail-card">
-          <h3>Dress Code</h3>
-          <p>Beach Formal - Think elegant but comfortable. Ladies, consider wedges or block heels for the outdoor setting. Gentlemen, light-colored suits are perfect for the coastal venue.</p>
+      </div>
+      
+      <!-- Timeline Icons -->
+      <div class="timeline-icons">
+        <div class="timeline-item">
+          <div class="timeline-icon">💒</div>
+          <span class="timeline-time">3:30 PM</span>
+          <span class="timeline-label">Ceremony</span>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-icon">🥂</div>
+          <span class="timeline-time">5:00 PM</span>
+          <span class="timeline-label">Cocktails</span>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-icon">🍽️</div>
+          <span class="timeline-time">6:30 PM</span>
+          <span class="timeline-label">Dinner</span>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-icon">🎉</div>
+          <span class="timeline-time">8:00 PM</span>
+          <span class="timeline-label">Party</span>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Dress Code Section -->
+  <section class="dress-code-section fade-in" id="dress-code">
+    <div class="container">
+      <h2 class="section-title">Dress Code</h2>
+      <div class="dress-code-grid">
+        <div class="dress-code-card">
+          <h3>For Her</h3>
+          <p>Beach formal or cocktail attire. Think flowing dresses, elegant jumpsuits, or dressy separates. Wedges or block heels recommended for the outdoor venue.</p>
+          <div class="color-swatches">
+            <span class="swatch" style="background: #FAF8F5;"></span>
+            <span class="swatch" style="background: #8BA4A8;"></span>
+            <span class="swatch" style="background: #B8C4A8;"></span>
+            <span class="swatch" style="background: #E8D4D0;"></span>
+            <span class="swatch" style="background: #E8C8B8;"></span>
+          </div>
+        </div>
+        <div class="dress-code-card">
+          <h3>For Him</h3>
+          <p>Light-colored suits or dress shirts with chinos. Ties optional but welcomed. Comfortable dress shoes recommended for the beach setting.</p>
+          <div class="color-swatches">
+            <span class="swatch" style="background: #FAF8F5;"></span>
+            <span class="swatch" style="background: #8BA4A8;"></span>
+            <span class="swatch" style="background: #B8C4A8;"></span>
+            <span class="swatch" style="background: #E8D4D0;"></span>
+            <span class="swatch" style="background: #E8C8B8;"></span>
+          </div>
+        </div>
+      </div>
+      <p class="swatch-note">Suggested colors: ivory, dusty blue, sage, or blush - please avoid pure white (reserved for the bride)</p>
     </div>
   </section>
 
@@ -161,8 +210,20 @@
   <!-- RSVP Section -->
   <section class="rsvp-section fade-in" id="rsvp">
     <div class="container">
-      <h2 class="section-title" style="text-align: center; color: #2C3E3E;">RSVP</h2>
-      <p class="section-subtitle" style="text-align: center; color: #8B7355; margin-bottom: 3rem;">Please respond by April 1, 2026</p>
+      <h2 class="section-title">RSVP</h2>
+      <p class="section-subtitle">Please respond by April 1, 2026</p>
+      
+      <!-- Envelope Container -->
+      <div class="envelope-container">
+        <div class="envelope">
+          <div class="envelope-flap"></div>
+          <div class="envelope-body"></div>
+          <div class="rsvp-card">
+            <h3>RSVP</h3>
+            <p>by April 1st, 2026</p>
+          </div>
+        </div>
+      </div>
       
       <form class="rsvp-form" id="rsvpForm" name="wedding-rsvp" method="POST" data-netlify="true" netlify-honeypot="bot-field">
         <!-- Honeypot field for spam protection (hidden from users) -->
