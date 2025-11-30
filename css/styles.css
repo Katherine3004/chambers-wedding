@@ -234,10 +234,10 @@ body {
 
 .hero-names {
   font-family: var(--font-script);
-  font-size: clamp(3rem, 8vw, 6rem);
+  font-size: clamp(2rem, 6vw, 4rem);
   font-weight: 700;
   color: var(--coastal-blue-dark);
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -266,22 +266,22 @@ body {
 
 .hero-date {
   font-family: var(--font-sans);
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   letter-spacing: 0.2em;
   color: var(--coastal-blue-dark);
   display: block;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   font-weight: 300;
 }
 
 .hero-location {
   font-family: var(--font-sans);
-  font-size: 1rem;
+  font-size: 0.875rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--coastal-blue-dark);
   display: block;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .hero-tagline {
